@@ -1,0 +1,16 @@
+// + Tools
+// --------
+
+@function calculateRem($size) {
+    $rem: calc($size / 16px); 
+    @return #{$rem}rem; 
+}
+
+@function colorOpacity($color, $alpha: 1) {
+    @return rgba(var(--#{$color}), $alpha);
+}
+
+@function hexOpacity($hex, $opacity) {
+    $opacity: round($opacity * 255);
+    @return rgba(red($hex), green($hex), blue($hex), $opacity);
+}

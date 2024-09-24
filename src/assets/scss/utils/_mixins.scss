@@ -1,0 +1,77 @@
+// + Mixins
+// --------
+
+@mixin flexbox($direction: row, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin spacing($top, $right: $top, $bottom: $top, $left: $right) {
+    margin: $top $right $bottom $left;
+    padding: $top $right $bottom $left;
+}
+
+@mixin gradient($direction, $color1, $color2) {
+    background: linear-gradient($direction, $color1, $color2);
+}
+
+@mixin typography($font-size, $font-weight: normal, $line-height: normal, $letter-spacing: normal, $text-align: left) {
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+    text-align: $text-align;
+}
+
+@mixin heading($level, $fw: 400) {
+    font-family: $font-family-heading;
+    font-weight: $fw;
+    
+    @if $level == 1 {
+        font-size: calculateRem($font-size-xl);
+    } @else if $level == 2 {
+        font-size: calculateRem($font-size-lg);
+    } @else if $level == 3 {
+        font-size: calculateRem($font-size-md);
+    } @else {
+        font-size: calculateRem($font-size-base);
+    }
+}
+
+@mixin textTruncate() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@mixin responsiveTypography($font-size, $font-size-md, $font-size-lg) {
+    font-size: calculateRem($font-size);
+    @media (min-width: 768px) {
+        font-size: calculateRem($font-size-md);
+    }
+    @media (min-width: 1024px) {
+        font-size: calculateRem($font-size-lg);
+    }
+}
+
+@mixin border($width: 1px, $style: solid, $color: black) {
+    border: $width $style $color;
+}
+
+@mixin boxShadow($hOffset: 0, $vOffset: 0, $blur: 10, $color: rgba(0, 0, 0, 0.5)) {
+    box-shadow: $hOffset $vOffset $blur $color;
+}
+
+@function zIndex($level) {
+    @if $level == 'low' {
+        @return 10;
+    } @else if $level == 'medium' {
+        @return 100;
+    } @else if $level == 'high' {
+        @return 1000;
+    } @else {
+        @return 0;
+    }
+}

@@ -1,0 +1,1 @@
+export type BaseButtonUxTypes = 'primary' | 'secondary' | 'action' | 'back' | 'next' | 'link';
